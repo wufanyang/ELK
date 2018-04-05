@@ -1,0 +1,8 @@
+server.host: "0.0.0.0"
+elasticsearch.url: "http://elasticsearch:9200"
+elasticsearch.requestTimeout: 500000
+#The docker image of elasticsearch is installed X-Pack for security.
+#"elastic:changeme" is used by default
+elasticsearch.username: kibana
+elasticsearch.password: "123456"
+xpack.monitoring.ui.container.elasticsearch.enabled: true

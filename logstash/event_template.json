@@ -1,0 +1,14 @@
+{
+  "template": "myevent",
+  "version" : 60001,
+  "settings" : {
+    "number_of_shards" : 1
+  },
+  "mappings" : {
+    "doc" : {
+      "properties" : {
+        "timeout" : { "type": "text" }
+      }
+    }
+  }
+}
