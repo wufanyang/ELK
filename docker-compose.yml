@@ -13,15 +13,6 @@ services:
       - "./es/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
       - esdata1:/usr/share/elasticsearch/data
       - eslogs1:/usr/share/elasticsearch/logs
-#    ulimits:
-#      memlock:
-#        soft: -1
-#        hard: -1
-#      nofile:
-#        soft: 65536
-#        hard: 65536
-#    logging: 
-#      driver: "none"
 
   kibana:
     image: "docker.elastic.co/kibana/kibana:6.1.2"
@@ -32,8 +23,6 @@ services:
     volumes:
       #load local kibana configration file into docker
       - "./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml"
-    #logging:
-    #  driver: "none"
 
 
   logstash:
@@ -41,10 +30,7 @@ services:
     build: ./logstash/
     image: m_logstash
     container_name: logstash
-    #image: m-logstash
     hostname: logstash
-#    links: 
-#      - "elasticsearch"
     ports:
       - "5044:5044"
     volumes:
@@ -54,11 +40,7 @@ services:
       - "./logstash/pipeline/logstash_run.conf:/usr/share/logstash/pipeline/logstash_run.conf"
       - "./logstash/pipeline/logstash_product_type.conf:/usr/share/logstash/pipeline/logstash_product_type.conf"
       - "./logstash/pipeline/logstash_event.conf:/usr/share/logstash/pipeline/logstash_event.conf"
-      #- "./logstash-input-mongodb-master/lib/logstash/inputs/mongodb.rb:/usr/share/logstash/vendor/bundle/jruby/1.9/gems/logstash-input-mongodb-0.4.1/lib/logstash/inputs/mongodb.rb"
       - "./logstash/event_template.json:/usr/share/logstash/templates/event_template.json"
-#    stdin_open: true
-#    tty: true
-#    command: /bin/bash
 
 volumes:
   esdata1: {}
